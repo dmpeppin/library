@@ -247,6 +247,90 @@ Many items are encoded with base64 for robust, simple encoding
 `--request POST` set request type
 
 
+## Basic Authentication
+
+Basic authentication is a very simple, built in authentication method built in to html
+
+Basic authentication is encoded in base64, so very simple to decode
+
+- No cookies
+- No session identifiers
+- No login pages
+
+
+## Directory Traversal
+
+`%c0%ae%c0%ae` unicode for ".."
+
+`../../../` like in bash
+
+
+
+
+## Url parameters
+
+`http://www.example.com/add.asp?item=3478`
+
+`item=3478' is the paramters portion succeptible to modifciation  **should not be used for anything not arbitrary**
+
+
+## Robots.txt
+
+`robots.txt` lists site locations you prefer not be indexed by web crawlers, good to not give search engines unneccesary info, bad to give malicious actors targets of locations of prefered obscurity
+
+## WHOIS Social Engineering
+
+whois gives information about website ownership that is publically available to anybody
+
+## Shellshock
+
+exploit of CGI scripting
+
+  ```bash
+  GET /index.html HTTP/1.1
+  Host: example.com
+  User-Agent: () { :;};
+  Connection: keep-alive
+  ```
+
+`() { :;}; /bin/bash -c 'cat /etc/passwd'`
+
+## Code Sloppyness
+
+sometime viewing source can be a source of information for mistakes, incomplete hardening, or other clues to information
+
+- comments showing todo hardening tasks
+- sloppy shortcut coding that makes into live software
+
+
+## XSS Cross Site Scripting
+
+Insertion of malicous code into the webpage that others will then execute when they visit the page
+
+### JavaScript:
+
+- `<script>alert("Hello!");</script>`
+- `<script>alert(document.cookie);</script>`
+
+mitigation
+
+
+## Bypass JavaScript restrictions
+
+If the site uses JavaScript to enforce forum entry, this can be by passed by manipulting the sent packet after it leaves the web browser
+
+Also, JavaScript can be simply turned off inside the web browser
+
+
+## Heartbleed
+
+backdoor vulnerability inserted into OpenSSL code at version 1.0.1, persistent until version 1.0.1f
+
+code used to grab memory content, such as possibly keys, passwords
+
+
+
+
 
 ## Other firefox addons
 
